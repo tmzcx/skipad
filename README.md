@@ -16,7 +16,7 @@
 | 项 | 范围 |
 |---|---|
 | 最低版本 | **Android 8.0（API 26）** |
-| 目标版本 | Android 16（API 36），compileSdk 36 |
+| 目标版本 | Android 16（API 36），`targetSdk 36` / `compileSdk 37` |
 | 实测机型 | Redmi 26020RN1AC（Android 16，720×1600） |
 | 说明 | 悬浮窗 GIF 动图需要 **Android 9（API 28）** 及以上，低版本自动退化成静态首帧 |
 | 说明 | 「深度清理内存」需要 [Shizuku](https://github.com/RikkaApps/Shizuku)；无 Shizuku 时不可用 |
@@ -97,7 +97,9 @@
 
 ## 编译
 
-需要 JDK 17+ 与 Android SDK（compileSdk 36）。
+需要 **JDK 17+** 与 **Android SDK Platform 37**（`compileSdk = 37`，`targetSdk = 36`）。
+> 如果你的 SDK 里没有 Platform 37，可把 `app/build.gradle.kts` 的 `compileSdk` 改成 36 试试，
+> 本项目没有用到 37 才有的 API。
 
 ```bash
 # 1. 在根目录创建 local.properties，指向你的 SDK
@@ -113,6 +115,9 @@ keytool -genkey -v -keystore app/skipad.jks -alias skipad \
 #    keyAlias=skipad
 #    keyPassword=***
 
+./gradlew :app:assembleDebug     # 先跑这个，不需要签名配置
+
+# 4. 想打正式包再执行（必须先有上面的 keystore.properties）
 ./gradlew :app:assembleRelease
 ```
 
