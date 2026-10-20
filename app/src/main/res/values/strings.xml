@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">跳过</string>
+    <string name="service_label">跳过 · 开屏广告自动跳过</string>
+    <string name="service_desc">在应用启动时自动点击开屏广告的「跳过」按钮。本服务只读取屏幕上的控件文字，不会上传任何数据。</string>
+</resources>

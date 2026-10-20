@@ -1,0 +1,28 @@
+# Gradle / Android
+.gradle/
+build/
+local.properties
+.kotlin/
+captures/
+*.apk
+*.aab
+*.iml
+
+# IDE
+.idea/
+*.hprof
+
+# 本工程专属：工具链与产物目录（不要进仓库）
+.tools/
+.android-sdk/
+.android-home/
+.gradle-home/
+.tmp/
+
+# 签名材料（绝对不要提交）
+keystore.properties
+*.jks
+*.keystore
+
+# Shizuku 安装包由用户自行下载，不入库
+app/src/main/assets/shizuku.apk

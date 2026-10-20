@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- 双三角快进：代表“跳过” -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M34,40 L34,68 L54,54 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,40 L54,68 L74,54 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M72,40 L72,68 L78,68 L78,40 Z" />
+</vector>

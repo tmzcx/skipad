@@ -1,0 +1,520 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "id": "generic-text-skip",
+      "app": "通用（所有应用）",
+      "package": "*",
+      "priority": 0,
+      "windowMs": 12000,
+      "cooldownMs": 2500,
+      "maxAttempts": 3,
+      "match": {
+        "text": [
+          "^跳过\\s*\\d*\\s*[sS秒]?$",
+          "^跳过广告\\s*\\d*\\s*[sS秒]?$",
+          "^关闭广告\\s*\\d*\\s*[sS秒]?$",
+          "^(Skip|SKIP|skip)\\s*\\d*\\s*[sS]?$",
+          "^\\d+\\s*[sS秒]?\\s*[|｜]?\\s*跳过$"
+        ],
+        "areas": [
+          [
+            0.35,
+            0.0,
+            1.0,
+            0.35
+          ],
+          [
+            0.5,
+            0.55,
+            1.0,
+            1.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "generic-pangle",
+      "app": "穿山甲广告 SDK",
+      "package": "*",
+      "priority": 10,
+      "windowMs": 12000,
+      "match": {
+        "id": [
+          "tt_splash_skip_btn",
+          "tt_splash_skip_view",
+          "com.byted.pangle:id/tt_splash_skip_btn"
+        ],
+        "text": [
+          "^跳过\\s*\\d*\\s*[sS秒]?$"
+        ]
+      }
+    },
+    {
+      "id": "self-demo",
+      "app": "内置演示",
+      "package": "com.skipad*",
+      "activity": ".*DemoSplashActivity",
+      "priority": 100,
+      "windowMs": 15000,
+      "match": {
+        "text": [
+          "^跳过\\s*\\d*$"
+        ]
+      }
+    },
+    {
+      "id": "inapp-ad-close",
+      "app": "全程：应用内广告（关键词触发）",
+      "package": "*",
+      "continuous": true,
+      "priority": 60,
+      "cooldownMs": 2500,
+      "maxAttempts": 40,
+      "match": {
+        "marker": [
+          "广告",
+          "摇一摇",
+          "摇动",
+          "扭动",
+          "跳转详情",
+          "第三方应用",
+          "第三方内容",
+          "了解更多",
+          "点击查看",
+          "上滑",
+          "立即下载",
+          "免费下载",
+          "查看详情",
+          "跳转",
+          "领取",
+          "一个小礼物",
+          "礼物",
+          "打开惊喜",
+          "惊喜"
+        ],
+        "fallbackCorner": true,
+        "text": [
+          "^(×|✕|X|x|关闭|关闭广告|跳过|跳过广告|不感兴趣|我知道了|残忍拒绝|以后再说|暂不)$"
+        ],
+        "desc": [
+          "^(关闭|close|Close|跳过|skip|关闭广告)$"
+        ],
+        "id": [
+          "*close*",
+          "*cacel*",
+          "*cancel*",
+          "*skip*",
+          "*dismiss*",
+          "*interstitial*skip*",
+          "*ad_close*",
+          "*skip_btn*"
+        ],
+        "areas": [
+          [
+            0.55,
+            0.0,
+            1.0,
+            0.4
+          ],
+          [
+            0.55,
+            0.55,
+            1.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.35,
+            0.35
+          ],
+          [
+            0.0,
+            0.6,
+            0.35,
+            1.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ad-marker-close",
+      "app": "带「广告」标识的弹窗（通用）",
+      "package": "*",
+      "priority": 50,
+      "windowMs": 20000,
+      "cooldownMs": 1500,
+      "maxAttempts": 4,
+      "match": {
+        "marker": [
+          "广告"
+        ],
+        "text": [
+          "^(关闭|关闭广告|跳过|跳过广告|×|✕|X|x|知道了|忽略)$"
+        ],
+        "desc": [
+          "^(关闭|close|Close|跳过|skip)$"
+        ],
+        "id": [
+          "*close*",
+          "*cacel*",
+          "*cancel*",
+          "*skip*",
+          "*dismiss*"
+        ],
+        "areas": [
+          [
+            0.45,
+            0.0,
+            1.0,
+            0.42
+          ],
+          [
+            0.45,
+            0.55,
+            1.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.3,
+            0.3
+          ],
+          [
+            0.0,
+            0.6,
+            0.35,
+            1.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ad-sdk-close",
+      "app": "广告 SDK 插屏/开屏（通用）",
+      "package": "*",
+      "activity": "(?i).*(interstitial|transparent|adactivity|splashad|windmill|ksad|zjdsp|meishu|dsp|proxy|reward|sdkad|advert|adpro|ptg).*",
+      "priority": 40,
+      "windowMs": 20000,
+      "cooldownMs": 1200,
+      "maxAttempts": 4,
+      "match": {
+        "id": [
+          "tobid_interstitial_skip_text",
+          "tobid_interstitial_skip_ll",
+          "tobid_interstitial_skip_shade",
+          "ms_activity_sdk_interstitial_cacel",
+          "tt_splash_skip_btn",
+          "tt_splash_skip_view",
+          "*_skip_text",
+          "*_skip_btn",
+          "*_skip_view",
+          "*_skip_ll",
+          "*interstitial_cacel",
+          "*interstitial_close",
+          "*ad_close",
+          "*_close",
+          "*close_btn",
+          "*cancel*",
+          "*cacel*",
+          "*dismiss*"
+        ],
+        "text": [
+          "^(关闭|关闭广告|跳过|跳过广告|知道了|残忍拒绝|忽略|不感兴趣)$",
+          "^(×|✕|X|x|↗|✖)$",
+          "^(跳过|关闭)\\s*\\d*\\s*[sS秒]?$"
+        ],
+        "desc": [
+          "^(关闭|close|Close|关闭广告|skip)$"
+        ],
+        "areas": [
+          [
+            0.45,
+            0.0,
+            1.0,
+            0.42
+          ],
+          [
+            0.45,
+            0.55,
+            1.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.3,
+            0.3
+          ],
+          [
+            0.0,
+            0.6,
+            0.35,
+            1.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "shandong-school-splash",
+      "app": "闪动校园",
+      "package": "com.huachenjie.shandong_school",
+      "activity": ".*splash.*",
+      "priority": 20,
+      "windowMs": 15000,
+      "cooldownMs": 1500,
+      "maxAttempts": 4,
+      "match": {
+        "text": [
+          "^跳过.*$",
+          "^关闭.*$"
+        ],
+        "id": [
+          "skip",
+          "tv_skip",
+          "iv_close",
+          "btn_close",
+          "tt_splash_skip_btn"
+        ],
+        "areas": [
+          [
+            0.4,
+            0.0,
+            1.0,
+            0.3
+          ],
+          [
+            0.4,
+            0.7,
+            1.0,
+            1.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "chaoxing-splash",
+      "app": "学习通",
+      "package": "com.chaoxing.mobile",
+      "activity": ".*(SplashActivity|WelcomeActivity).*",
+      "priority": 20,
+      "windowMs": 15000,
+      "cooldownMs": 2000,
+      "maxAttempts": 4,
+      "match": {
+        "text": [
+          "^跳过\\s*\\d*\\s*[sS秒]?$"
+        ],
+        "id": [
+          "tt_splash_skip_btn",
+          "tt_splash_skip_view",
+          "tv_skip",
+          "iv_close"
+        ],
+        "areas": [
+          [
+            0.4,
+            0.7,
+            1.0,
+            1.0
+          ],
+          [
+            0.4,
+            0.0,
+            1.0,
+            0.2
+          ]
+        ]
+      }
+    },
+    {
+      "id": "douyin-splash",
+      "app": "抖音",
+      "package": "com.ss.android.ugc.aweme",
+      "priority": 5,
+      "match": {
+        "id": [
+          "splash_skip",
+          "skip_btn",
+          "tv_skip"
+        ],
+        "text": [
+          "^跳过.*$",
+          "^广告\\s*\\d+.*$"
+        ]
+      }
+    },
+    {
+      "id": "taobao-splash",
+      "app": "淘宝",
+      "package": "com.taobao.taobao",
+      "priority": 5,
+      "match": {
+        "id": [
+          "tv_skip",
+          "skip",
+          "btn_skip"
+        ],
+        "text": [
+          "^跳过.*$"
+        ]
+      }
+    },
+    {
+      "id": "bilibili-splash",
+      "app": "哔哩哔哩",
+      "package": "tv.danmaku.bili",
+      "activity": ".*(MainActivityV2|SplashActivity).*",
+      "priority": 5,
+      "match": {
+        "id": [
+          "count_down",
+          "tv_skip"
+        ],
+        "text": [
+          "^跳过.*$"
+        ]
+      }
+    },
+    {
+      "id": "qq-splash",
+      "app": "QQ",
+      "package": "com.tencent.mobileqq",
+      "priority": 5,
+      "match": {
+        "id": [
+          "skip",
+          "tv_skip",
+          "ad_skip"
+        ],
+        "text": [
+          "^跳过.*$"
+        ]
+      }
+    },
+    {
+      "id": "amap-splash",
+      "app": "高德地图",
+      "package": "com.autonavi.minimap",
+      "priority": 5,
+      "match": {
+        "id": [
+          "skip",
+          "tv_skip",
+          "ad_skip"
+        ],
+        "text": [
+          "^跳过.*$",
+          "^关闭广告$"
+        ]
+      }
+    },
+    {
+      "id": "rail12306-splash",
+      "app": "铁路 12306",
+      "package": "com.MobileTicket",
+      "priority": 5,
+      "match": {
+        "id": [
+          "tv_skip"
+        ],
+        "text": [
+          "^跳过.*$"
+        ]
+      }
+    },
+    {
+      "id": "zhihu-splash",
+      "app": "知乎",
+      "package": "com.zhihu.android",
+      "activity": ".*LauncherActivity.*",
+      "priority": 5,
+      "match": {
+        "id": [
+          "btn_skip"
+        ],
+        "text": [
+          "^跳过.*$"
+        ]
+      }
+    },
+    {
+      "id": "douban-splash",
+      "app": "豆瓣",
+      "package": "com.douban.frodo",
+      "priority": 5,
+      "match": {
+        "id": [
+          "ad_mark",
+          "tv_skip"
+        ],
+        "text": [
+          "^跳过.*$"
+        ]
+      }
+    },
+    {
+      "id": "weibo-splash",
+      "app": "微博",
+      "package": "com.sina.weibo",
+      "priority": 5,
+      "match": {
+        "id": [
+          "skip",
+          "tv_skip"
+        ],
+        "text": [
+          "^跳过.*$"
+        ]
+      }
+    },
+    {
+      "id": "xhs-splash",
+      "app": "小红书",
+      "package": "com.xingin.xhs",
+      "priority": 5,
+      "match": {
+        "id": [
+          "skip",
+          "tv_skip",
+          "close"
+        ],
+        "text": [
+          "^跳过.*$"
+        ]
+      }
+    },
+    {
+      "id": "csdn-splash",
+      "app": "CSDN",
+      "package": "net.csdn.csdnplus",
+      "priority": 5,
+      "match": {
+        "id": [
+          "vlion_ad_closed",
+          "tt_splash_skip_btn"
+        ],
+        "text": [
+          "^跳过.*$"
+        ]
+      }
+    },
+    {
+      "id": "jd-splash",
+      "app": "京东",
+      "package": "com.jingdong.app.mall",
+      "priority": 5,
+      "match": {
+        "id": [
+          "tv_skip",
+          "skip"
+        ],
+        "text": [
+          "^跳过.*$"
+        ]
+      }
+    }
+  ]
+}
